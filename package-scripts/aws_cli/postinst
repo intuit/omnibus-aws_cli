@@ -1,0 +1,11 @@
+#!/bin/bash
+
+INSTALLER_DIR=/opt/intu/aws_cli
+
+rm -f /usr/bin/aws_cli
+
+ln -sf $INSTALLER_DIR/bin/aws_cli /usr/bin
+
+echo "Thank you for installing aws_cli!"
+
+exit 0
