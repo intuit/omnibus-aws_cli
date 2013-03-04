@@ -14,7 +14,7 @@ env = {
 
 build do
   command(["./configure",
-           "--prefix=#{install_dir}/embedded",
+           "--prefix=#{install_dir}/embedded"].join(" "),
           :env => env)
 
   command "make -j #{max_build_jobs}", :env => {"LD_RUN_PATH" => "#{install_dir}/embedded/lib"}
