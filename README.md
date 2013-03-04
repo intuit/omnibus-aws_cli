@@ -1,10 +1,10 @@
 ## omnibus-aws_cli
 
-This contains the skelton for building Omnibus Heirloom packages.
+This contains the skelton for building Omnibus aws_cli package.
 
 ## Build
 
-To build the Heirloom RPM on the local system:
+To build the aws_cli RPM on the local system:
 
     bundle exec rake projects:aws_cli
 
