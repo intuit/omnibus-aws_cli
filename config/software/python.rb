@@ -4,7 +4,7 @@ version "3.3.0"
 source :url => "http://www.python.org/ftp/python/3.3.0/Python-3.3.0.tgz",
        :md5 => "198a64f7a04d1d5e95ce2782d5fd8254"
 
-relative_path "python-3.3.0"
+relative_path "Python-3.3.0"
 
 env = {
   "LDFLAGS" => "-L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
