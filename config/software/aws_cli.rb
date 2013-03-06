@@ -1,10 +1,11 @@
 name "aws_cli"
-version "0.1.0"
+version "0.7.0"
 
-dependencies ["rubygems", "ruby", "python"]
+dependencies ["rubygems", "ruby", "python", "virtualenv"]
 
-env = { "GEM_HOME" => nil, "GEM_PATH" => nil }
+source :url => "https://github.com/aws/aws-cli/archive/develop.zip",
+       :md5 => "0b9d9973636f67b77b036844ca9db544"
 
 build do
-  puts "THIS IS A TEST OF OMNIBUS where gem install would be"
+  command ". #{install_dir}/bin/activate; pip install --install-option='--prefix=#{install_dir}' awscli"
 end
