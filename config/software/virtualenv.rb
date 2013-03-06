@@ -9,6 +9,6 @@ source :url => "https://raw.github.com/pypa/virtualenv/master/virtualenv.py",
 relative_path "virtualenv-1.8.4"
 
 build do
-  command "#{install_dir}/embedded/bin/python ./virtualenv.py #{install_dir}"}
+  command "#{install_dir}/embedded/bin/python ./virtualenv.py #{install_dir}"
 end
 
