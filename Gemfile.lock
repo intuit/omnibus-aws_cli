@@ -1,14 +1,13 @@
 GIT
-  remote: https://github.com/opscode/omnibus-ruby.git
-  revision: 348e89e642c05e01d2aceaac468482cd8febfbbc
-  ref: 348e89e642c05e01d2aceaac468482cd8febfbbc
+  remote: https://github.com/brettweavnet/omnibus-ruby.git
+  revision: 3d26fa980c24a76705cd090b4b08397d208d1039
   specs:
     omnibus (0.5.3)
       fpm (= 0.3.11)
       mixlib-shellout (~> 1.0)
       ohai (>= 0.6.12)
       rake (>= 0.9)
-      thor (= 0.17.0)
+      thor (>= 0.16.0)
       uber-s3
 
 GIT
