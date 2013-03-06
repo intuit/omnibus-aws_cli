@@ -3,8 +3,8 @@ version "1.8.4"
 
 dependencies ["python"]
 
-source :url => "https://raw.github.com/pypa/virtualenv/master/virtualenv.py",
-       :md5 => "5af0bf28c6f0448075016a487b5d12bb"
+source :url => "https://github.com/pypa/virtualenv/archive/1.8.4.zip",
+       :md5 => "b12794a53858bd5a76953fd9394735c0"
 
 relative_path "virtualenv-1.8.4"
 
