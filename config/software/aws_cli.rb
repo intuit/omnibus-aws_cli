@@ -1,7 +1,7 @@
 name "aws_cli"
 version "0.7.0"
 
-dependencies ["rubygems", "ruby", "python", "virtualenv"]
+dependencies ["openssl", "python", "virtualenv"]
 
 source :url => "https://github.com/aws/aws-cli/archive/develop.zip",
        :md5 => "81311b63be43b02b6c131102356bbf6c"
