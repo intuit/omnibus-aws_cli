@@ -1,6 +1,6 @@
 name            "aws_cli"
 
-install_path    "/opt/intu/aws_cli"
+install_path    "/opt/aws_cli"
 build_version   "0.1.0"
 build_iteration "1"
 
