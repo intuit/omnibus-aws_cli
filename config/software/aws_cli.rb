@@ -4,7 +4,7 @@ version "0.8.1"
 dependencies ["openssl", "python", "virtualenv"]
 
 source :url => "https://github.com/aws/aws-cli/archive/0.8.1.zip",
-       :md5 => "3d9b381b9536b3a2f86171b258071bf0"
+       :md5 => "471010a0ed739cc0d361797d7f773b8c"
 
 relative_path "aws-cli-0.8.1"
 
