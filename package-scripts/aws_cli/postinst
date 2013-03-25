@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INSTALLER_DIR=/opt/aws
+INSTALLER_DIR=/opt/aws_cli
 
 rm -f /usr/bin/aws
 
