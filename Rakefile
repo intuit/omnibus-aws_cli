@@ -3,7 +3,7 @@ require 'bundler/setup'
 require 'omnibus'
 
 Omnibus.setup do |o|
-  o.config.install_dir = '/opt/intu/aws_cli'
+  o.config.install_dir = '/opt/aws_cli'
 
   Omnibus::CleanTasks.define!
 end
