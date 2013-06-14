@@ -35,7 +35,8 @@ git checkout --track <%= "#{ENV['GIT_BRANCH']}" %>
 # Install Bundle
 bundle install --quiet
 
-# Build aws_cli RPM
+# Install binstubs and build aws_cli RPM
+bundle install --binstubs
 bin/omnibus build project aws_cli
 
 # Upload RPM to Omnibus package bucket
