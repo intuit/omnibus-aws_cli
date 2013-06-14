@@ -1,3 +1,11 @@
 #!/bin/bash
+#
+# Perform necessary aws_cli removal steps
+# after package is uninstalled.
+#
 
 rm -f /usr/bin/aws
+
+echo "aws_cli has been uninstalled!"
+
+exit 0
