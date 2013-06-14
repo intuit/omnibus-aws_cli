@@ -36,7 +36,7 @@ git checkout --track <%= "#{ENV['GIT_BRANCH']}" %>
 bundle install --quiet
 
 # Build aws_cli RPM
-bundle exec rake projects:aws_cli
+bin/omnibus build project aws_cli
 
 # Upload RPM to Omnibus package bucket
 for rpm in $(ls -d /var/cache/omnibus/pkg/aws_cli*.rpm); do
