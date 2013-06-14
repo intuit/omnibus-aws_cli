@@ -25,6 +25,7 @@ gem install bundler -v 1.2.2 --no-ri --no-rdoc --quiet
 
 # Clone The Repo
 git clone --quiet https://github.com/intuit/omnibus-aws_cli.git /var/tmp/omnibus-aws_cli
+git checkout --track <%= "#{ENV['GIT_BRANCH']}" %>
 
 # Change directory to build cloned repo
 cd /var/tmp/omnibus-aws_cli
