@@ -5,6 +5,7 @@
 #
 
 rm -f /usr/bin/aws
+rm -f /opt/aws
 
 echo "aws_cli has been uninstalled!"
 
