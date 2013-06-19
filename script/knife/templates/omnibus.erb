@@ -32,11 +32,10 @@ cd /var/tmp/omnibus-aws_cli
 # Use appropriate build branch
 git checkout --track <%= "#{ENV['GIT_BRANCH']}" %>
 
-# Install Bundle
-bundle install --quiet
+# Install Bundle including binstubs which are needed for the next command
+bundle install --quiet --binstubs
 
-# Install binstubs and build aws_cli RPM
-bundle install --binstubs
+# Build aws_cli RPM
 bin/omnibus build project aws_cli
 
 # Upload RPM to Omnibus package bucket
