@@ -17,6 +17,11 @@ access_key = <%= "#{ENV['AWS_ACCESS_KEY_ID']}" %>
 secret_key = <%= "#{ENV['AWS_SECRET_ACCESS_KEY']}" %>
 EOS
 
+# Set version for build
+export version=<%= "#{ENV['version']}" %>
+export iteration=<%= "#{ENV['iteration']}" %>
+export iteration=<%= "#{ENV['md5_checksum']}" %>
+
 # Install Required RPMs
 yum install -y --quiet intu-ruby git s3cmd rpm-build
 
@@ -24,16 +29,16 @@ yum install -y --quiet intu-ruby git s3cmd rpm-build
 gem install bundler -v 1.2.2 --no-ri --no-rdoc --quiet
 
 # Clone The Repo
-git clone --quiet https://github.com/intuit/omnibus-aws_cli.git /var/tmp/omnibus-aws_cli
+git clone --quiet https://github.com/intuit/omnibus-aws_cli.git --branch jenkins_paramater /var/tmp/omnibus-aws_cli
 
 # Change directory to build cloned repo
 cd /var/tmp/omnibus-aws_cli
 
 # Install Bundle
-bundle install --quiet
+bundle install --quiet --binstubs
 
 # Build aws_cli RPM
-bundle exec rake projects:aws_cli
+bin/omnibus build project aws_cli
 
 # Upload RPM to Omnibus package bucket
 for rpm in $(ls -d /var/cache/omnibus/pkg/aws_cli*.rpm); do
