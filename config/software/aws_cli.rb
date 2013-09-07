@@ -4,7 +4,7 @@ version ENV['version']
 dependencies ["openssl", "python", "virtualenv"]
 
 source :url => "https://github.com/aws/aws-cli/archive/#{version}.zip",
-       :md5 => "#{ENV['md5_checksum']}"
+       :md5 => "#{ENV['checksum']}"
 
 relative_path "aws-cli-#{version}"
 
