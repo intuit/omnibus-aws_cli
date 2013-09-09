@@ -1,5 +1,5 @@
 name            "aws_cli"
-maintainer      "kevin_young@intuit.com"
+maintainer      "Intuit, Inc."
 homepage        "http://aws.amazon.com/cli/"
 
 install_path    "/opt/aws_cli"
