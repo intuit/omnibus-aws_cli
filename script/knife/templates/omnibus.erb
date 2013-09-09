@@ -34,8 +34,11 @@ git clone --quiet https://github.com/intuit/omnibus-aws_cli.git /var/tmp/omnibus
 # Change directory to build cloned repo
 cd /var/tmp/omnibus-aws_cli
 
-# Use appropriate build branch
-git checkout --track <%= "#{ENV['GIT_BRANCH']}" %>
+# Use appropriate build branch if passed via Jenkins UI
+branch=<%= "#{ENV['GIT_BRANCH']}" %>
+if [ -n "$branch" ];then
+  git checkout --track origin/${branch}
+fi
 
 # Install Bundle
 bundle install --quiet --binstubs
