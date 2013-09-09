@@ -26,7 +26,8 @@ gem install bundler -v 1.2.2 --no-ri --no-rdoc --quiet
 # Clone The Repo and Checkout Current Build Branch
 git clone --quiet https://github.com/intuit/omnibus-aws_cli.git /var/tmp/omnibus-aws_cli
 cd /var/tmp/omnibus-aws_cli
-git checkout --track <%= "#{ENV['GIT_BRANCH']}" %>
+pwd
+git checkout --track origin/<%= "#{ENV['GIT_BRANCH']}" %>
 
 # Install bundle with binstubs and build the aws_cli rpm
 bundle install --quiet --binstubs
