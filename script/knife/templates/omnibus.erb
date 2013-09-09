@@ -23,19 +23,13 @@ yum install -y --quiet intu-ruby git s3cmd rpm-build
 # Install bundler gem
 gem install bundler -v 1.2.2 --no-ri --no-rdoc --quiet
 
-# Clone The Repo
+# Clone The Repo and Checkout Current Build Branch
 git clone --quiet https://github.com/intuit/omnibus-aws_cli.git /var/tmp/omnibus-aws_cli
-
-# Change directory to build cloned repo
 cd /var/tmp/omnibus-aws_cli
-
-# Use appropriate build branch
 git checkout --track <%= "#{ENV['GIT_BRANCH']}" %>
 
-# Install Bundle including binstubs which are needed for the next command
+# Install bundle with binstubs and build the aws_cli rpm
 bundle install --quiet --binstubs
-
-# Build aws_cli RPM
 bin/omnibus build project aws_cli
 
 # Upload RPM to Omnibus package bucket
