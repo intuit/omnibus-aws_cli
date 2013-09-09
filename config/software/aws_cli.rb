@@ -3,11 +3,9 @@ version ENV['version']
 
 dependencies ["openssl", "python", "virtualenv"]
 
-source :url => "https://github.com/aws/aws-cli/archive/#{version}.zip",
-       :md5 => "#{ENV['checksum']}"
-
-relative_path "aws-cli-#{version}"
-
+# Install awscli via pip and the equivalent rev of botocore since the projects
+# are released on the same cadence and awscli has a broken dependency
+# specification on botocore.
 build do
-  command "source #{install_dir}/bin/activate; pip install --install-option='--prefix=#{install_dir}' awscli"
+  command ". #{install_dir}/bin/activate; pip install --install-option='--prefix=#{install_dir}' awscli==#{version} botocore==#{version}"
 end
