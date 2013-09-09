@@ -1,10 +1,21 @@
 #!/bin/bash
+#
+# Perform necessary aws_cli setup steps
+# after package is installed.
+#
 
+PROGNAME=$(basename $0)
 INSTALLER_DIR=/opt/aws_cli
+
+function error_exit
+{
+  echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
+  exit 1
+}
 
 rm -f /usr/bin/aws
 
-ln -sf $INSTALLER_DIR/bin/aws /usr/bin
+ln -sf $INSTALLER_DIR/bin/aws /usr/bin || error_exit "Cannot link aws to /usr/bin"
 
 echo "Thank you for installing aws_cli!"
 
