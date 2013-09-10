@@ -1,18 +1,23 @@
 ## omnibus-aws_cli
 
-This contains the skelton for building Omnibus aws_cli package.
+This contains the skeleton for building Omnibus aws_cli package.
 
 ## Build
 
 To build the aws_cli RPM on the local system:
 
-    bundle exec rake projects:aws_cli
+	yum install -y --quiet intu-ruby git s3cmd rpm-build  python-setuptools
+	gem install bundler -v 1.2.2 --no-ri --no-rdoc --quiet
+	git clone --quiet https://github.com/intuit/omnibus-aws_cli.git /var/tmp/omnibus-aws_cli
+	cd /var/tmp/omnibus-aws_cli
+	bundle install --quiet --binstubs
+	bin/omnibus build project aws_cli
 
 ## Continuous Integration
 
-Omnibus-aws_cli leverages knife-ec2 to create an instance which is used to build the RPM during CI. Over view of CI:
+omnibus-aws_cli leverages knife-ec2 to create an instance which is used to build the RPM during CI. Over view of CI:
 
-* Clone omnibus-aws_cli on CI instance and execute ci_setup.sh
+* Clone omnibus-aws_cli on CI instance and execute ./scripts/ci_setup
 * The ci_setup script uses knife-ec2 to create an ec2 instance
 * The instance is bootstraped using the omnibus.rb bootstrap script.
 * The git repo is cloned on the newly created build box.
@@ -26,3 +31,4 @@ Omnibus-aws_cli leverages knife-ec2 to create an instance which is used to build
 * AWS account with access to upload to S3 bucket and manage EC2 instances.
 * Credentials set as AWS_SECRET_ACCESS_KEY and AWS_ACCESS_KEY_ID
 * Ruby version 1.9.2 or higher
+* Access to the AMI listed in the file `script/knife/config/knife.rb`
