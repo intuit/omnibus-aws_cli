@@ -1,3 +1,4 @@
 #!/bin/bash
 
-rm -f /usr/bin/aws
+unlink /usr/bin/aws
+rm -rf /opt/aws_cli/
