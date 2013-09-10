@@ -10,7 +10,7 @@ To build the aws_cli RPM on the local system:
 	gem install bundler -v 1.2.2 --no-ri --no-rdoc --quiet
 	git clone --quiet https://github.com/intuit/omnibus-aws_cli.git /var/tmp/omnibus-aws_cli
 	cd /var/tmp/omnibus-aws_cli
-	bundle install --quiet
+	bundle install --quiet --binstubs
 	bin/omnibus build project aws_cli
 
 ## Continuous Integration
