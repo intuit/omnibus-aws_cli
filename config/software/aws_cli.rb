@@ -7,5 +7,5 @@ dependencies ["openssl", "python", "virtualenv"]
 # are released on the same cadence and awscli has a broken dependency
 # specification on botocore.
 build do
-  command ". #{install_dir}/bin/activate; pip install --install-option='--prefix=#{install_dir}' awscli==#{version} botocore==#{version}"
+  command ". #{install_dir}/bin/activate; pip install -v --install-option='--prefix=#{install_dir}' awscli==#{version}"
 end
