@@ -6,7 +6,7 @@ This contains the skeleton for building Omnibus aws_cli package.
 
 To build the aws_cli RPM on the local system:
 
-	yum install -y --quiet intu-ruby git s3cmd rpm-build  python-setuptools
+	yum install -y --quiet intu-ruby git aws_cli rpm-build  python-setuptools
 	gem install bundler -v 1.2.2 --no-ri --no-rdoc --quiet
 	git clone --quiet https://github.com/intuit/omnibus-aws_cli.git /var/tmp/omnibus-aws_cli
 	cd /var/tmp/omnibus-aws_cli
