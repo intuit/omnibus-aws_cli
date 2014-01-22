@@ -19,53 +19,47 @@ access_key = <%= "#{ENV['AWS_ACCESS_KEY_ID']}" %>
 secret_key = <%= "#{ENV['AWS_SECRET_ACCESS_KEY']}" %>
 EOS
 
-# Update /etc/hosts.allow to allow SSH access from Jenkins server
-echo "Step 3"
-cat > /etc/hosts.allow << EOS
-sshd : localhost, 10.0.0.0/255.0.0.0, 172.16.0.0/255.240.0.0, 192.168.0.0/255.255.0.0, 125.16.135.192/28,  .intuit.com, .intuit.net, .devhomestead.com, .diginsite.com, .esd.intuit.com, .gslb.intuit.com, .homestead-corp.com, .homestead-dev.com, .homestead-devexternal-inc.com, .homestead-devscripting.com, .homestead-intranet.com, .homestead-livemss.com, .imsagentsolutions.com, .imsmerchantsolutions.com, .innovativeagreement.com, .innovativeconcierge.com, .innovativegateway.com, .innovativemerchant.com, .intuit-dev.co.uk, .intuit-dev.com, .intuit-devinternal.co.uk, .intuit-devinternal.com, .intuit-livemirror.co.uk, .intuit-livemirror.com, .intuit-qa.co.uk, .intuit-qa.com, .intuit.test, .intuitcan.ca, .intuitcanada.com, .intuitwebsites-dev.co.uk, .intuitwebsites-dev.com, .intuitwebsites-devinternal.co.uk, .intuitwebsites-devinternal.com, .intuitwebsites-livemirror.co.uk, .intuitwebsites-livemirror.com, .intuitwebsites-qa.co.uk, .intuitwebsites-qa.com, .lnet5.com, .lnet6.com, .lnet7.com, .lnet8.com, .mint.com, .mrisystem.com, .paycycle.com, .qahomestead.com, .qhg.local, .sitesvp-dev.com, .sitesvp-devinternal.com, .sitesvp-livemirror.com, .sitesvp-livetest.com, .sitesvp-qa.com, .vpweb-dev.com, .vpweb-devinternal.com, .vpweb-livemirror.com, .vpweb-livemss.com, .vpweb-qa.com, 54.215.19.180
-EOS
-
 # Update openssl to be latest
-echo "Step 4"
+echo "Step 3"
 yum update -q -y openssl
 
 # Set version for build
-echo "Step 5"
+echo "Step 4"
 export version=<%= "#{ENV['version']}" %>
 export iteration=<%= "#{ENV['iteration']}" %>
 
-echo "Step 6"
+echo "Step 5"
 # Install Required RPMs
 yum install -y --quiet intu-ruby git s3cmd rpm-build
 
-echo "Step 7"
+echo "Step 6"
 # Install bundler gem
 gem install bundler -v 1.5.2 --no-ri --no-rdoc --quiet
 
-echo "Step 8"
+echo "Step 7"
 # Clone The Repo
 git clone --quiet https://github.com/intuit/omnibus-aws_cli.git /var/tmp/omnibus-aws_cli
 
-echo "Step 9"
+echo "Step 8"
 # Change directory to build cloned repo
 cd /var/tmp/omnibus-aws_cli
 
-echo "Step 10"
+echo "Step 9"
 # Use appropriate build branch if passed via Jenkins UI
 branch=<%= "#{ENV['GIT_BRANCH']}" %>
 if [ -n "$branch" ] && [ "$branch" != "master" ];then
   git checkout --track origin/${branch}
 fi
 
-echo "Step 11"
+echo "Step 10"
 # Install Bundle
 bundle install --quiet --binstubs
 
-echo "Step 12"
+echo "Step 11"
 # Build aws_cli RPM
 bin/omnibus build project aws_cli
 
-echo "Step 13"
+echo "Step 12"
 # Upload RPM to Omnibus package bucket
 for rpm in $(ls -d /var/cache/omnibus/pkg/aws_cli*.rpm); do
   echo "Upload $rpm to s3://intu-cap-omnibus-packages-us-west-1"
