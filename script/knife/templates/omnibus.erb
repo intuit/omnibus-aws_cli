@@ -3,6 +3,7 @@ bash -c '
 set -e
 
 # Add Intu Repo (For Ruby and S3cmd RPMs)
+echo "Step 1"
 cat > /etc/yum.repos.d/intu-packages-us-west-1.repo << EOS
 [intu-packages-us-west-1]
 name=Intuit Custom RPM Packages
@@ -12,39 +13,53 @@ enabled=1
 EOS
 
 # Create s3cfg file
+echo "Step 2"
 cat > /root/.s3cfg << EOS
 access_key = <%= "#{ENV['AWS_ACCESS_KEY_ID']}" %>
 secret_key = <%= "#{ENV['AWS_SECRET_ACCESS_KEY']}" %>
 EOS
 
+# Update openssl to be latest
+echo "Step 3"
+yum update -q -y openssl
+
 # Set version for build
+echo "Step 4"
 export version=<%= "#{ENV['version']}" %>
 export iteration=<%= "#{ENV['iteration']}" %>
 
+echo "Step 5"
 # Install Required RPMs
 yum install -y --quiet intu-ruby git s3cmd rpm-build
 
+echo "Step 6"
 # Install bundler gem
-gem install bundler -v 1.2.2 --no-ri --no-rdoc --quiet
+gem install bundler -v 1.5.2 --no-ri --no-rdoc --quiet
 
+echo "Step 7"
 # Clone The Repo
 git clone --quiet https://github.com/intuit/omnibus-aws_cli.git /var/tmp/omnibus-aws_cli
 
+echo "Step 8"
 # Change directory to build cloned repo
 cd /var/tmp/omnibus-aws_cli
 
+echo "Step 9"
 # Use appropriate build branch if passed via Jenkins UI
 branch=<%= "#{ENV['GIT_BRANCH']}" %>
 if [ -n "$branch" ] && [ "$branch" != "master" ];then
   git checkout --track origin/${branch}
 fi
 
+echo "Step 10"
 # Install Bundle
 bundle install --quiet --binstubs
 
+echo "Step 11"
 # Build aws_cli RPM
 bin/omnibus build project aws_cli
 
+echo "Step 12"
 # Upload RPM to Omnibus package bucket
 for rpm in $(ls -d /var/cache/omnibus/pkg/aws_cli*.rpm); do
   echo "Upload $rpm to s3://intu-cap-omnibus-packages-us-west-1"
