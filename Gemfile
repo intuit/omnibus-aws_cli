@@ -5,5 +5,5 @@ gem 'omnibus-software', :git => 'git://github.com/opscode/omnibus-software.git',
 
 group :jenkins do
 gem 'chef'
-gem 'knife'
+gem 'knife-ec2'
 end
