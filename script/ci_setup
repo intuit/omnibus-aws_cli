@@ -35,9 +35,13 @@ function clean_up_and_exit {
   exit $1
 }
 
+# Run bundle
+bundle install
+
 # Install knife ec2
-gem install chef --version 11.12.2
-gem install knife-ec2 --no-ri --no-rdoc --quiet
+#gem install chef --version 11.12.2 --no-ri --no-rdoc --quiet
+#gem install knife-ec2 --no-ri --no-rdoc --quiet
+
 if [ $? -ne 0 ]; then
   clean_up_and_exit 1
 fi
