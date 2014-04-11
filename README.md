@@ -13,6 +13,12 @@ To build the aws_cli RPM on the local system:
 	bundle install --quiet --binstubs
 	bin/omnibus build project aws_cli
 
+## Updating the RPM to a new iteration
+
+* Update the ./script/ci_setup script to adjust the 'version' and 'itertion' as needed
+* version = the version of aws-cli you are building
+* iteration = the version of the RPM we have produced
+
 ## Continuous Integration
 
 omnibus-aws_cli leverages knife-ec2 to create an instance which is used to build the RPM during CI. Over view of CI:

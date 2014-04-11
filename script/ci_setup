@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# These values need to be bumped when producing new RPMs
+# version = version of aws-cli you are compiling
+# iteration = the iteration number of the RPM you are producing
+# NOTE: The RPM which is produced will overwrite the RPM on the S3 bucket on successful run
+export version=1.2.10
+export iteration=2
+
 # Source my jenkins config if available
 if [ -f ~/.jenkins.sh ]; then
   . ~/.jenkins.sh
