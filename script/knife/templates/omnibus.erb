@@ -30,7 +30,8 @@ export iteration=<%= "#{ENV['iteration']}" %>
 
 echo "Step 5"
 # Install Required RPMs
-yum install -y --quiet intu-ruby git s3cmd rpm-build
+rpm -e ruby-irb ruby-rdoc ruby rubygems
+yum install -y intu-ruby intu-rubygems libffi-devel gcc git s3cmd rpm-build
 
 echo "Step 6"
 # Install bundler gem
