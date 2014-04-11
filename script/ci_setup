@@ -35,6 +35,9 @@ function clean_up_and_exit {
   exit $1
 }
 
+# Install bundler
+gem install bundler -v 1.5.2 --no-ri --no-rdoc
+
 # Run bundle
 bundle install
 
